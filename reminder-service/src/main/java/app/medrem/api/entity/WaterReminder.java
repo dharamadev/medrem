@@ -11,14 +11,16 @@ import lombok.ToString;
 
 @Data
 @ToString
-@Qualifier("water")
 @EqualsAndHashCode
-@Document(collection = "account")
-public class Reminder {
+@Document(collection = "reminder")
+public class WaterReminder {
 
     @Id
     private String id;
+    private String accountNumber;
     private String name;
     private RemType remType;
-    private Tracker tracker;
+    
+    @Qualifier("water")
+    private Water water;
 }
