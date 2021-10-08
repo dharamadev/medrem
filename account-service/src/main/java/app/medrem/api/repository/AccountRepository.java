@@ -9,8 +9,8 @@ import app.medrem.api.entity.Account;
 @Repository
 public interface AccountRepository extends MongoRepository<Account, String> {
 
-	public Account findByContactNumber(String contactNumber);
+	public Account findByAccountNumber(String accountNumber);
 	
-	@Query(delete = true, value = "{'contactNumber': $0}")
-	public Account deleteByContactNumber(String contactNumber);
+	@Query(delete = true, value = "{'accountNumber': $0}")
+	public Account deleteByAccountNumber(String accountNumber);
 }

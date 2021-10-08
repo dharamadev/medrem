@@ -2,12 +2,12 @@ package app.medrem.api.util;
 
 import org.springframework.stereotype.Component;
 
-import app.medrem.api.entity.Reminder;
+import app.medrem.api.entity.WaterReminder;
 
 @Component
 public class ServiceMapUtil {
 
-    public Reminder updateAccountMap(Reminder reminder, Reminder updatedReminder) {
+    public WaterReminder updateAccountMap(WaterReminder reminder, WaterReminder updatedReminder) {
 
 	return null;
     }

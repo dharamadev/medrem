@@ -1,0 +1,9 @@
+server:
+  port: 8282
+  error:
+    include-stacktrace: never
+spring:
+  data:
+    mongodb:
+      auto-index-creation: true
+  
