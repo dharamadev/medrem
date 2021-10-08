@@ -18,7 +18,6 @@ class AccountTest {
 	account.setEmail("test@test.com");
 	account.setContactNumber("123");
 	account.setAccountNumber("Test");
-	account.setAddress(new Address("Test", null, null, null, null, null, 123245));
 
 	assertEquals(new String("12we34567yt"), account.getId());
 	assertEquals(new String("Test"), account.getFirstName());
@@ -31,7 +30,7 @@ class AccountTest {
 
     @Test
     void testHashCodeEquals() {
-	Account account1 = new Account("12we34567yt", null, null, null, null, null, null);
+	Account account1 = new Account("12we34567yt", null, null, null, null, null);
 
 	boolean equalVerify = account1.equals(account1);
 

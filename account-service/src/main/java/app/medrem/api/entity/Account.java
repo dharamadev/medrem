@@ -39,7 +39,4 @@ public class Account {
 	
 	@Indexed(unique = true)
 	private String accountNumber;
-	                                   
-	private Address address;
-
 }

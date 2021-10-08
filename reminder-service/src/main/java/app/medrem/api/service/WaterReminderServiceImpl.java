@@ -7,7 +7,7 @@ import app.medrem.api.entity.WaterReminder;
 import app.medrem.api.repository.WaterReminderRepository;
 
 @Service
-public class ReminderServiceImpl implements WaterReminderService {
+public class WaterReminderServiceImpl implements WaterReminderService {
 
     @Autowired
     private WaterReminderRepository waterReminderRepository;
@@ -23,13 +23,13 @@ public class ReminderServiceImpl implements WaterReminderService {
     }
 
     @Override
-    public WaterReminder updateReminder(WaterReminder reminder) {
-	return this.waterReminderRepository.save(reminder);
+    public WaterReminder updateReminder(WaterReminder waterReminder) {
+	return this.waterReminderRepository.save(waterReminder);
     }
 
     @Override
     public void deleteReminder(String accountNumber) {
-	this.waterReminderRepository.deleteByAccountNumber(accountNumber);
+	this.waterReminderRepository.deleteByAccount(accountNumber);
     }
 
 }

@@ -2,14 +2,12 @@ package app.medrem.api.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-import org.springframework.stereotype.Repository;
 
-import app.medrem.api.entity.WaterReminder;
+import app.medrem.api.entity.MedicineReminder;
 
-@Repository
-public interface WaterReminderRepository extends MongoRepository<WaterReminder, String> {
+public interface MedicineReminderRepository extends MongoRepository<MedicineReminder, String>  {
 
-    public WaterReminder findByAccountNumber(String accountNumber);
+    public MedicineReminder findByAccountNumber(String accountNumber);
 
     @Query(delete = true, value = "{'accountNumber': $0}")
     public void deleteByAccount(String accountNumber);

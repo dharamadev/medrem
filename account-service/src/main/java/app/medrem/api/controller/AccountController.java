@@ -33,10 +33,10 @@ public class AccountController {
     private ServiceMapUtil serviceMapUtil;
 
     @GetMapping("/{contactNumber}")
-    public ResponseEntity<Account> getAccount(@PathVariable("contactNumber") String contactNumber) {
-	if (this.accountService.getAccount(contactNumber) != null) {
+    public ResponseEntity<Account> getAccount(@PathVariable("contactNumber") String accountNumber) {
+	if (this.accountService.getAccount(accountNumber) != null) {
 	    return ResponseEntity.status(HttpStatus.OK)
-		    .body(Optional.of(this.accountService.getAccount(contactNumber)).orElseThrow());
+		    .body(Optional.of(this.accountService.getAccount(accountNumber)).orElseThrow());
 	} else {
 	    throw new RecordNotFound(ErrorMessage.ACCOUNT_NOT_FOUND.value());
 	}

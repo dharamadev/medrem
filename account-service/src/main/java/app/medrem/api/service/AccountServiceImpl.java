@@ -14,7 +14,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account getAccount(String accountNumber) {
-	return this.accountRepository.findByContactNumber(accountNumber);
+	return this.accountRepository.findByAccountNumber(accountNumber);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void deleteAccount(String accountNumber) {
-	this.accountRepository.deleteByContactNumber(accountNumber);
+	this.accountRepository.deleteByAccountNumber(accountNumber);
     }
 }

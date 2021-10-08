@@ -15,12 +15,12 @@ import app.medrem.api.exception.InvaliedRequestException;
 import app.medrem.api.service.WaterReminderService;
 
 @RestController
-@RequestMapping("/api/v1/reminder")
-public class ReminderController {
+@RequestMapping("/api/v1/waterReminder")
+public class WaterReminderController {
 
     @Autowired
     private WaterReminderService waterReminderService;
-    
+
     @PostMapping
     public ResponseEntity<WaterReminder> createReminder(@RequestBody WaterReminder waterReminder) {
 	return ResponseEntity.ok(Optional.of(this.waterReminderService.createReminder(waterReminder))

@@ -6,9 +6,9 @@ public interface WaterReminderService {
 
     public WaterReminder getReminder(String accountNumber);
 
-    public WaterReminder createReminder(WaterReminder reminder);
+    public WaterReminder createReminder(WaterReminder waterReminder);
 
-    public WaterReminder updateReminder(WaterReminder reminder);
+    public WaterReminder updateReminder(WaterReminder waterReminder);
 
     public void deleteReminder(String accountNumber);
 }

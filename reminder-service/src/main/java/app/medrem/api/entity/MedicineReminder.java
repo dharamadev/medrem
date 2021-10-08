@@ -1,12 +1,14 @@
 package app.medrem.api.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import app.medrem.api.constant.Frequency;
+import app.medrem.api.constant.Type;
+import app.medrem.api.constant.Unit;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -14,36 +16,33 @@ import lombok.ToString;
 @Data
 @ToString
 @EqualsAndHashCode
-@Document(collection = "waterReminder")
-public class WaterReminder {
-
+@Document(collection = "medicineReminder")
+public class MedicineReminder {
+    
     @Id
     private String id;
     
     @Length(min = 1, message = "not valid")
     private String name;
     
-    @Length(min = 1, message = "not valid")
-    private String gender;
-    
     @Length(min = 12, message = "not valid")
     private String accountNumber;
     
     @Length(min = 1, message = "not valid")
-    private Integer doseSize;
+    private String medName;
     
     @Length(min = 1, message = "not valid")
-    private Integer frequency;
+    private Type medType;
     
     @Length(min = 1, message = "not valid")
-    private Integer waterIntake;
+    private Unit medUnit;
     
     @Length(min = 1, message = "not valid")
-    private Integer consumed;
+    private String illness;
     
     @Length(min = 1, message = "not valid")
-    private Date bedTime;
+    private Frequency medFrequency;
     
-    @Length(min = 1, message = "not valid")
-    private Date wakeupTime;
+    private LocalDate fillingDate;
+    private String instructions;
 }
