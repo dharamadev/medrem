@@ -2,9 +2,10 @@ package app.medrem.api.constant;
 
 public enum ErrorMessage {
 
-	ACCOUNT_NOT_FOUND("Account not found"),
+	ACCOUNT_NOT_FOUND("Reminder not found"),
 	INVALID_REQUEST("Invalid request"),
-	ACCOUNT_EXISTS("Account already exists");
+	ACCOUNT_EXISTS("Reminder already exists"),
+	INTERNAL_SERVER_ERROR("Server Error");
 
 	private String message;
 

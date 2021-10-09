@@ -10,12 +10,11 @@ import app.medrem.api.entity.Account;
 public class ServiceMapUtil {
 
 	public Account updateAccountMap(Account account, Account updatedAccount) {
-		
 		return Optional.of(updatedAccount).map(a->{
 			a.setFirstName(account.getFirstName());
 			a.setLastName(account.getLastName());
 			a.setEmail(account.getEmail());
-//			a.setContactNumber(account.getContactNumber());
+			a.setContactNumber(account.getContactNumber());
 			return a;
 		}).get();
 	}
