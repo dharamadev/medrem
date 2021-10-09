@@ -31,10 +31,10 @@ public class WaterController {
 
     @Autowired
     private ServiceMapUtil serviceMapUtil;
-
+    
     @PostMapping
-    public ResponseEntity<WaterReminder> createWaterReminder(@RequestBody WaterReminder water) {
-	return ResponseEntity.ok(Optional.of(this.waterReminderService.createWaterReminder(water))
+    public ResponseEntity<WaterReminder> createWaterReminder(@RequestBody WaterReminder waterReminder) {
+	return ResponseEntity.ok(Optional.of(this.waterReminderService.createWaterReminder(waterReminder))
 		.orElseThrow(() -> new InvaliedRequestException(ErrorMessage.INVALID_REQUEST.value())));
     }
 
