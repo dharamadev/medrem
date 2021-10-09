@@ -18,8 +18,6 @@ public class ServiceMapUtil {
 	    waterRem.setConsumed(waterReminder.getConsumed());
 	    waterRem.setBedTime(waterReminder.getBedTime());
 	    waterRem.setWakeupTime(waterReminder.getWakeupTime());
-	    System.out.println("===========================");
-	    System.out.println(waterRem);
 	    return waterRem;
 	}).get();
     }

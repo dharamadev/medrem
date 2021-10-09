@@ -7,7 +7,7 @@ import app.medrem.api.entity.WaterReminder;
 import app.medrem.api.repository.WaterReminderRepository;
 
 @Service
-public class WaterServiceImpl implements WaterService {
+public class WaterReminderServiceImpl implements WaterReminderService {
 
     @Autowired
     private WaterReminderRepository waterReminderRepository;
