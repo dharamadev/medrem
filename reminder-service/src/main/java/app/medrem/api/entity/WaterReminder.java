@@ -35,7 +35,7 @@ public class WaterReminder extends Reminder {
 
     @Length(min = 1, message = "not valid")
     private String bedTime;
-
+    
     @Length(min = 1, message = "not valid")
     private String wakeupTime;
 }
