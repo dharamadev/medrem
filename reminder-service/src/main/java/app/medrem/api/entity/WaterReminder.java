@@ -1,9 +1,6 @@
 package app.medrem.api.entity;
 
-import java.util.Date;
-
 import org.hibernate.validator.constraints.Length;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,37 +10,32 @@ import lombok.ToString;
 
 @Data
 @ToString
-@EqualsAndHashCode
-@Document(collection = "waterReminder")
-public class WaterReminder {
+@EqualsAndHashCode(callSuper = true)
+@Document(collection = "reminder")
+public class WaterReminder extends Reminder {
 
-    @Id
-    private String id;
-    
+    @Indexed(unique = true)
     @Length(min = 1, message = "not valid")
-    private String name;
-    
+    private String accountNumber;
+
     @Length(min = 1, message = "not valid")
     private String gender;
-    
-    @Length(min = 12, message = "not valid")
-    private String accountNumber;
-    
+
     @Length(min = 1, message = "not valid")
     private Integer doseSize;
-    
+
     @Length(min = 1, message = "not valid")
     private Integer frequency;
-    
+
     @Length(min = 1, message = "not valid")
     private Integer waterIntake;
-    
+
     @Length(min = 1, message = "not valid")
     private Integer consumed;
-    
+
     @Length(min = 1, message = "not valid")
-    private Date bedTime;
-    
+    private String bedTime;
+
     @Length(min = 1, message = "not valid")
-    private Date wakeupTime;
+    private String wakeupTime;
 }

@@ -4,11 +4,11 @@ import app.medrem.api.entity.WaterReminder;
 
 public interface WaterReminderService {
 
-    public WaterReminder getReminder(String accountNumber);
+    public WaterReminder createWaterReminder(WaterReminder water);
 
-    public WaterReminder createReminder(WaterReminder waterReminder);
+    public WaterReminder getWaterReminder(String accountNumber);
 
-    public WaterReminder updateReminder(WaterReminder waterReminder);
+    public WaterReminder updateWaterReminder(WaterReminder water);
 
-    public void deleteReminder(String accountNumber);
+    public void deleteWaterReminder(String accountNumber);
 }

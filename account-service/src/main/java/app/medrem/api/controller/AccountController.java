@@ -32,8 +32,8 @@ public class AccountController {
     @Autowired
     private ServiceMapUtil serviceMapUtil;
 
-    @GetMapping("/{contactNumber}")
-    public ResponseEntity<Account> getAccount(@PathVariable("contactNumber") String accountNumber) {
+    @GetMapping("/{accountNumber}")
+    public ResponseEntity<Account> getAccount(@PathVariable("accountNumber") String accountNumber) {
 	if (this.accountService.getAccount(accountNumber) != null) {
 	    return ResponseEntity.status(HttpStatus.OK)
 		    .body(Optional.of(this.accountService.getAccount(accountNumber)).orElseThrow());
@@ -48,44 +48,35 @@ public class AccountController {
 		.orElseThrow(() -> new InvaliedRequestException(ErrorMessage.INVALID_REQUEST.value())));
     }
 
-    @PutMapping("/{contactNumber}")
+    @PutMapping("/{accountNumber}")
     public ResponseEntity<Account> updateAccount(@RequestBody Account account,
-	    @PathVariable("contactNumber") String contactNumber) {
+	    @PathVariable("accountNumber") String accountNumber) {
 
-	if (this.accountService.getAccount(contactNumber) != null) {
-
-	    Account acc1 = this.accountService.getAccount(contactNumber);
-	    account.setId(acc1.getId());
-	    account.setContactNumber(contactNumber);
-	    account.setAccountNumber(acc1.getAccountNumber());
-
-	    System.out.println(acc1.equals(account));
-	    if (acc1.equals(account)) {
+	Account accountFromDb = this.accountService.getAccount(accountNumber);
+	if (accountFromDb != null) {
+	    account.setId(accountFromDb.getId());
+	    account.setAccountNumber(accountFromDb.getAccountNumber());
+	    if (accountFromDb.equals(account)) {
 		throw new ConflictException(ErrorMessage.ACCOUNT_EXISTS.value());
 	    } else {
-		return ResponseEntity.status(HttpStatus.OK)
-			.body(Optional.ofNullable(this.accountService.getAccount(contactNumber)).map(acc -> {
-			    return this.accountService
-				    .updateAccount(this.serviceMapUtil.updateAccountMap(account, acc));
-			}).orElseThrow());
+		return ResponseEntity.status(HttpStatus.OK).body(Optional.ofNullable(accountFromDb).map(acc -> {
+		    return this.accountService.updateAccount(this.serviceMapUtil.updateAccountMap(account, acc));
+		}).orElseThrow());
 	    }
 
 	} else {
-	    account.setContactNumber(contactNumber);
+	    account.setContactNumber(accountNumber);
 	    return ResponseEntity.status(HttpStatus.OK).body(this.accountService.createAccount(account));
 	}
     }
 
-    @DeleteMapping("/{contactNumber}")
-    public ResponseEntity<Account> deleteAccount(@PathVariable String contactNumber) {
-
-	Account acc = this.accountService.getAccount(contactNumber);
-	
+    @DeleteMapping("/{accountNumber}")
+    public ResponseEntity<Account> deleteAccount(@PathVariable("accountNumber") String accountNumber) {
+	Account acc = this.accountService.getAccount(accountNumber);
 	if (acc == null) {
 	    throw new RecordNotFound(ErrorMessage.ACCOUNT_NOT_FOUND.value());
 	}
-
-	this.accountService.deleteAccount(contactNumber);
+	this.accountService.deleteAccount(accountNumber);
 	return ResponseEntity.status(HttpStatus.OK).body(acc);
     }
 }

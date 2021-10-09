@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum RemType {
+public enum ReminderType {
 
     WATER("Water"),
     MEDICINE("Medicine");

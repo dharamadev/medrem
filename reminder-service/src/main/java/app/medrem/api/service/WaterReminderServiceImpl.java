@@ -13,23 +13,23 @@ public class WaterReminderServiceImpl implements WaterReminderService {
     private WaterReminderRepository waterReminderRepository;
     
     @Override
-    public WaterReminder getReminder(String accountNumber) {
-	return this.waterReminderRepository.findByAccountNumber(accountNumber);
+    public WaterReminder createWaterReminder(WaterReminder waterReminder) {
+	return waterReminderRepository.save(waterReminder);
     }
 
     @Override
-    public WaterReminder createReminder(WaterReminder waterReminder) {
-	return this.waterReminderRepository.save(waterReminder);
+    public WaterReminder getWaterReminder(String accountNumber) {
+	return waterReminderRepository.findByAccountNumber(accountNumber);
     }
 
     @Override
-    public WaterReminder updateReminder(WaterReminder waterReminder) {
-	return this.waterReminderRepository.save(waterReminder);
+    public WaterReminder updateWaterReminder(WaterReminder waterReminder) {
+	return waterReminderRepository.save(waterReminder);
     }
 
     @Override
-    public void deleteReminder(String accountNumber) {
-	this.waterReminderRepository.deleteByAccount(accountNumber);
+    public void deleteWaterReminder(String accountNumber) {
+	this.waterReminderRepository.deleteByAccountNumber(accountNumber);
     }
 
 }
