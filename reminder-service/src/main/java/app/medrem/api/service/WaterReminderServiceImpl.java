@@ -3,7 +3,7 @@ package app.medrem.api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.medrem.api.entity.WaterReminder;
+import app.medrem.api.entity.Water;
 import app.medrem.api.repository.WaterReminderRepository;
 
 @Service
@@ -13,17 +13,17 @@ public class WaterReminderServiceImpl implements WaterReminderService {
     private WaterReminderRepository waterReminderRepository;
     
     @Override
-    public WaterReminder createWaterReminder(WaterReminder waterReminder) {
+    public Water createWaterReminder(Water waterReminder) {
 	return waterReminderRepository.save(waterReminder);
     }
 
     @Override
-    public WaterReminder getWaterReminder(String accountNumber) {
+    public Water getWaterReminder(String accountNumber) {
 	return waterReminderRepository.findByAccountNumber(accountNumber);
     }
 
     @Override
-    public WaterReminder updateWaterReminder(WaterReminder waterReminder) {
+    public Water updateWaterReminder(Water waterReminder) {
 	return waterReminderRepository.save(waterReminder);
     }
 

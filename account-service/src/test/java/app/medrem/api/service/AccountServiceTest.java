@@ -26,7 +26,7 @@ public class AccountServiceTest {
     @Test
     public void getAccountTest() {
 	when(this.accountRepository.findByAccountNumber(Mockito.anyString()))
-		.then(a -> new Account("12we34567yt", null, null, null, null, null));
+		.then(a -> new Account("12we34567yt", null, null, null, null, null, null));
 
 	assertNotNull(this.accountServiceImpl.getAccount("12we34567yt"));
 	assertEquals(this.accountServiceImpl.getAccount("12we34567yt").getId(), new String("12we34567yt"));

@@ -30,7 +30,7 @@ class AccountTest {
 
     @Test
     void testHashCodeEquals() {
-	Account account1 = new Account("12we34567yt", null, null, null, null, null);
+	Account account1 = new Account("12we34567yt",null, null, null, null, null, null);
 
 	boolean equalVerify = account1.equals(account1);
 

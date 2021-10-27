@@ -22,21 +22,24 @@ import lombok.ToString;
 @Document(collection = "account")
 public class Account {
 
-	@Id
-	private String id;
+    @Id
+    private String id;
 
-	@Length(min = 1, message = "not valid")
-	private String firstName;
+    @Length(min = 1, message = "not valid")
+    private String firstName;
 
-	private String lastName;
-	
-	@Email(message = "not valid")
-	private String email;
+    private String lastName;
 
-	@Indexed(unique = true)
-	@Pattern(regexp="(^$|[0-9]{10,10})", message = "not valid")
-	private String contactNumber;
-	
-	@Indexed(unique = true)
-	private String accountNumber;
+    @Length(min = 1, message = "not valid")
+    private String gender;
+
+    @Email(message = "not valid")
+    private String email;
+
+    @Indexed(unique = true)
+    @Pattern(regexp = "(^$|[0-9]{10,10})", message = "not valid")
+    private String contactNumber;
+
+    @Indexed(unique = true)
+    private String accountNumber;
 }
