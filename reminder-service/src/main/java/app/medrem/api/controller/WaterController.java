@@ -31,7 +31,7 @@ public class WaterController {
 
     @Autowired
     private ServiceMapUtil serviceMapUtil;
-    
+
     @PostMapping
     public ResponseEntity<Water> createWaterReminder(@RequestBody Water waterReminder) {
 	return ResponseEntity.ok(Optional.of(this.waterReminderService.createWaterReminder(waterReminder))
@@ -40,11 +40,11 @@ public class WaterController {
 
     @GetMapping("/{accountNumber}")
     public ResponseEntity<Water> getWaterReminder(@PathVariable("accountNumber") String accountNumber) {
-	if (this.waterReminderService.getWaterReminder(accountNumber) != null) {
+	if (this.waterReminderService.getWaterReminder(accountNumber) == null) {
+	    throw new RecordNotFound(ErrorMessage.ACCOUNT_NOT_FOUND.value());
+	} else {
 	    return ResponseEntity.status(HttpStatus.OK)
 		    .body(Optional.of(this.waterReminderService.getWaterReminder(accountNumber)).orElseThrow());
-	} else {
-	    throw new RecordNotFound(ErrorMessage.ACCOUNT_NOT_FOUND.value());
 	}
     }
 
@@ -56,7 +56,7 @@ public class WaterController {
 	if (waterReminderDb != null) {
 	    waterReminder.setId(waterReminderDb.getId());
 	    waterReminder.setAccountNumber(accountNumber);
-	    
+
 	    if (waterReminderDb.equals(waterReminder)) {
 		throw new ConflictException(ErrorMessage.ACCOUNT_EXISTS.value());
 	    } else {
@@ -67,7 +67,8 @@ public class WaterController {
 	    }
 	} else {
 	    waterReminder.setAccountNumber(accountNumber);
-	    return ResponseEntity.status(HttpStatus.OK).body(this.waterReminderService.createWaterReminder(waterReminder));
+	    return ResponseEntity.status(HttpStatus.OK)
+		    .body(this.waterReminderService.createWaterReminder(waterReminder));
 	}
     }
 
