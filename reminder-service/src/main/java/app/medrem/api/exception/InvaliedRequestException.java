@@ -1,10 +1,14 @@
 package app.medrem.api.exception;
 
-public class InvaliedRequestException extends RuntimeException{
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-	private static final long serialVersionUID = 1L;
+@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+public class InvaliedRequestException extends RuntimeException {
 
-	public InvaliedRequestException(String msg) {
-		super(msg);
-	}
+    private static final long serialVersionUID = 1L;
+
+    public InvaliedRequestException(String msg) {
+	super(msg);
+    }
 }

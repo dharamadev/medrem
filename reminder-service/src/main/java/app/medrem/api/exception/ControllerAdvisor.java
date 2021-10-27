@@ -28,7 +28,7 @@ public class ControllerAdvisor {
 	return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponseMap.getError(e.getMessage(),
 		HttpStatus.CONFLICT.value(), request.getRequestURI().toString()));
     }
-    
+
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Errordto> genericException(Exception e) {
 	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponseMap.getError(
