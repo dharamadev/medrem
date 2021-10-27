@@ -12,17 +12,17 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = true)
 @Document(collection = "reminder")
-public class WaterReminder extends Reminder {
+public class Water extends Reminder {
 
     @Indexed(unique = true)
     @Length(min = 1, message = "not valid")
     private String accountNumber;
-
+    
     @Length(min = 1, message = "not valid")
-    private String gender;
-
+    private Integer weight;
+    
     @Length(min = 1, message = "not valid")
-    private Integer doseSize;
+    private Dose dose;
 
     @Length(min = 1, message = "not valid")
     private Integer frequency;

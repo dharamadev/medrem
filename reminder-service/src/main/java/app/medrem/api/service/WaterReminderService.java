@@ -1,14 +1,14 @@
 package app.medrem.api.service;
 
-import app.medrem.api.entity.WaterReminder;
+import app.medrem.api.entity.Water;
 
 public interface WaterReminderService {
 
-    public WaterReminder createWaterReminder(WaterReminder water);
+    public Water createWaterReminder(Water water);
 
-    public WaterReminder getWaterReminder(String accountNumber);
+    public Water getWaterReminder(String accountNumber);
 
-    public WaterReminder updateWaterReminder(WaterReminder water);
+    public Water updateWaterReminder(Water water);
 
     public void deleteWaterReminder(String accountNumber);
 }
