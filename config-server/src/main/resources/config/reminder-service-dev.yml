@@ -10,3 +10,9 @@ spring:
       port: 27017
       database: medrem
 debug: true
+security:
+  require-ssl: true
+  ssl.key-store-password: Romio@1993
+  ssl:
+    key-store: src/main/resources/certificate/medrem-ssl.p12
+    key-store-type: PKCS12

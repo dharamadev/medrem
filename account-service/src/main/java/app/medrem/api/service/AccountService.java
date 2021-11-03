@@ -1,6 +1,6 @@
 package app.medrem.api.service;
 
-import app.medrem.api.entity.Account;
+import app.medrem.api.model.Account;
 
 public interface AccountService {
 

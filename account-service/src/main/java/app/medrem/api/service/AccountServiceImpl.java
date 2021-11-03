@@ -3,7 +3,7 @@ package app.medrem.api.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.medrem.api.entity.Account;
+import app.medrem.api.model.Account;
 import app.medrem.api.repository.AccountRepository;
 
 @Service

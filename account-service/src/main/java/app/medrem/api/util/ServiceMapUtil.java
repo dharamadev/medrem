@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import app.medrem.api.entity.Account;
+import app.medrem.api.model.Account;
 
 @Component
 public class ServiceMapUtil {
