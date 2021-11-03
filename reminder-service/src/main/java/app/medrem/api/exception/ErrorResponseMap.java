@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Component;
 
-import app.medrem.api.entity.dto.Errordto;
+import app.medrem.api.dto.Errordto;
 
 @Component
 public class ErrorResponseMap {

@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.medrem.api.constant.ErrorMessage;
-import app.medrem.api.entity.Account;
 import app.medrem.api.exception.InvaliedRequestException;
 import app.medrem.api.exception.ConflictException;
 import app.medrem.api.exception.RecordNotFound;
+import app.medrem.api.model.Account;
 import app.medrem.api.service.AccountService;
 import app.medrem.api.util.ServiceMapUtil;
 

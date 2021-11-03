@@ -6,4 +6,9 @@ spring:
   data:
     mongodb:
       auto-index-creation: true
-  
+security:
+  require-ssl: true
+  ssl:
+    key-store-password: Romio@1993
+    key-store: src/main/resources/certificate/medrem-ssl.p12
+    key-store-type: PKCS12

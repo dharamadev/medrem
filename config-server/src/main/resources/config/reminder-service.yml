@@ -1,9 +1,15 @@
 server:
   port: 8282
+  ssl:
+    key-alias: medrem-ssl
+    key-store-type: JKS
+    key-store-password: Romio@1993
+    key-store-provider: SUN
+    key-store: classpath:certificate/medrem-ssl.jks
+    
   error:
     include-stacktrace: never
 spring:
   data:
     mongodb:
       auto-index-creation: true
-  

@@ -4,7 +4,8 @@ import org.springframework.data.mongodb.repository.DeleteQuery;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import app.medrem.api.entity.Water;
+import app.medrem.api.model.Water;
+
 import java.lang.String;
 
 @Repository

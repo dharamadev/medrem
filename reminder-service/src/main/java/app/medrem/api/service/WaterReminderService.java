@@ -1,6 +1,6 @@
 package app.medrem.api.service;
 
-import app.medrem.api.entity.Water;
+import app.medrem.api.model.Water;
 
 public interface WaterReminderService {
 

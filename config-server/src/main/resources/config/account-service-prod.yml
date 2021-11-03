@@ -1,1 +1,7 @@
 message: Hello Prod
+security:
+  require-ssl: true
+  ssl.key-store-password: Romio@1993
+  ssl:
+    key-store: src/main/resources/ebininfosoft-ssl-key.p12
+    key-store-type: PKCS12

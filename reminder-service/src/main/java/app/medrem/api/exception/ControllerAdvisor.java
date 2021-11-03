@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import app.medrem.api.entity.dto.Errordto;
+import app.medrem.api.dto.Errordto;
 
 public class ControllerAdvisor {
 

@@ -15,12 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.medrem.api.constant.ErrorMessage;
-import app.medrem.api.entity.Water;
 import app.medrem.api.exception.ConflictException;
 import app.medrem.api.exception.InvaliedRequestException;
 import app.medrem.api.exception.RecordNotFound;
+import app.medrem.api.model.Water;
 import app.medrem.api.service.WaterReminderService;
-import app.medrem.api.util.ServiceMapUtil;
 
 @RestController
 @RequestMapping("/api/v1/water")
@@ -28,9 +27,6 @@ public class WaterController {
 
     @Autowired
     private WaterReminderService waterReminderService;
-
-    @Autowired
-    private ServiceMapUtil serviceMapUtil;
 
     @PostMapping
     public ResponseEntity<Water> createWaterReminder(@RequestBody Water waterReminder) {
@@ -62,7 +58,7 @@ public class WaterController {
 	    } else {
 		return ResponseEntity.status(HttpStatus.OK).body(Optional.ofNullable(waterReminderDb).map(reminder -> {
 		    return this.waterReminderService
-			    .updateWaterReminder(this.serviceMapUtil.updateWaterReminderMap(waterReminder, reminder));
+			    .updateWaterReminder(waterReminder);
 		}).orElseThrow());
 	    }
 	} else {
