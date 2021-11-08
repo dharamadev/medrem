@@ -51,7 +51,6 @@ public class AccountController {
     @PutMapping("/{accountNumber}")
     public ResponseEntity<Account> updateAccount(@RequestBody Account account,
 	    @PathVariable("accountNumber") String accountNumber) {
-
 	Account accountFromDb = this.accountService.getAccount(accountNumber);
 	if (accountFromDb != null) {
 	    account.setId(accountFromDb.getId());
@@ -63,7 +62,6 @@ public class AccountController {
 		    return this.accountService.updateAccount(this.serviceMapUtil.updateAccountMap(account, acc));
 		}).orElseThrow());
 	    }
-
 	} else {
 	    account.setContactNumber(accountNumber);
 	    return ResponseEntity.status(HttpStatus.OK).body(this.accountService.createAccount(account));
@@ -71,12 +69,11 @@ public class AccountController {
     }
 
     @DeleteMapping("/{accountNumber}")
-    public ResponseEntity<Account> deleteAccount(@PathVariable("accountNumber") String accountNumber) {
+    public void deleteAccount(@PathVariable("accountNumber") String accountNumber) {
 	Account acc = this.accountService.getAccount(accountNumber);
 	if (acc == null) {
 	    throw new RecordNotFound(ErrorMessage.ACCOUNT_NOT_FOUND.value());
 	}
 	this.accountService.deleteAccount(accountNumber);
-	return ResponseEntity.status(HttpStatus.OK).body(acc);
     }
 }
