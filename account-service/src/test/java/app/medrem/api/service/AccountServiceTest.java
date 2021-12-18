@@ -42,7 +42,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void updateAccount() {
+    public void updateAccountTest() {
 	when(this.accountRepository.save(Mockito.any()))
 		.thenReturn(new Account("12we34567yt", null, null, null, null, null, null));
 
@@ -51,7 +51,7 @@ public class AccountServiceTest {
     }
 
     @Test
-    public void deleteAccount() {
+    public void deleteAccountTest() {
 	this.accountServiceImpl.deleteAccount(new String("12we34567yt"));
 	verify(accountRepository, Mockito.times(1)).deleteByAccountNumber(new String("12we34567yt"));
     }
