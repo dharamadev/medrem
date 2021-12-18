@@ -63,7 +63,7 @@ public class AccountController {
 		}).orElseThrow());
 	    }
 	} else {
-	    account.setContactNumber(accountNumber);
+	    account.setAccountNumber(accountNumber);
 	    return ResponseEntity.status(HttpStatus.OK).body(this.accountService.createAccount(account));
 	}
     }

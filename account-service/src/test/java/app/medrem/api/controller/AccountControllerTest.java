@@ -11,6 +11,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import app.medrem.api.constant.ErrorMessage;
 import app.medrem.api.exception.ConflictException;
 import app.medrem.api.exception.InvaliedRequestException;
 import app.medrem.api.exception.RecordNotFound;
@@ -42,9 +44,17 @@ public class AccountControllerTest {
     @MockBean
     private AccountRepository accountRepository;
 
+    private static Account account;
+
+    @BeforeAll
+    static void init() {
+	account = Account.builder().id("12we34567yt").firstName("Test").lastName("Test").contactNumber("9999999999")
+		.accountNumber("MR9454318045").build();
+    }
+
     @Test
     public void getAccountTest() throws Exception {
-	Account account = new Account("12we34567yt", null, null, null, null, null, "MR9454318045");
+
 	when(this.accountService.getAccount(Mockito.anyString())).thenReturn(account);
 	this.mockMvc.perform(get("/api/v1/account/MR9454318045")).andExpect(status().isOk())
 		.andExpect(jsonPath("$.accountNumber", is(new String("MR9454318045"))));
@@ -59,8 +69,6 @@ public class AccountControllerTest {
 
     @Test
     public void createAccountTest() throws Exception {
-	Account account = new Account("6188d254ee97ed79200f1e37", "John", "Doe", "M", "dharmendra@gmail.com",
-		"9454318045", "MR9454318045");
 	String accountObject = new ObjectMapper().writeValueAsString(account);
 	when(this.accountService.createAccount(Mockito.any())).thenReturn(account);
 	this.mockMvc.perform(post("/api/v1/account").contentType(MediaType.APPLICATION_JSON).content(accountObject))
@@ -69,17 +77,30 @@ public class AccountControllerTest {
 
     @Test
     public void createAccount_ExceptionTest() throws Exception {
-	Account account = new Account("6188d254ee97ed79200f1e37", "John", "Doe", "", "dharmendra@gmail.com", "", "");
+
 	String accountObject = new ObjectMapper().writeValueAsString(account);
-	when(this.accountService.createAccount(Mockito.any())).thenReturn(account);
+	when(this.accountService.createAccount(Mockito.any()))
+		.thenThrow(new InvaliedRequestException(ErrorMessage.INVALID_REQUEST.value()));
 	this.mockMvc.perform(post("/api/v1/account").contentType(MediaType.APPLICATION_JSON).content(accountObject))
-		.andExpect(status().isOk()).andExpect(result -> assertThat(result instanceof InvaliedRequestException));
+		.andExpect(status().isInternalServerError())
+		.andExpect(result -> assertThat(result instanceof InvaliedRequestException));
     }
 
     @Test
-    public void updateAccountTest() throws Exception {
-	Account account = new Account("6188d254ee97ed79200f1e37", "John", "Doe", "M", "dharmendra@gmail.com",
-		"9454318045", "MR9454318045");
+    public void updateAccount_01() throws Exception {
+	String accountObject = new ObjectMapper().writeValueAsString(account);
+	Account account1 = Account.builder().id("12we34567yt").firstName("Test1").lastName("Test1")
+		.contactNumber("9999999999").accountNumber("MR9454318045").build();
+	when(this.accountService.getAccount(Mockito.anyString())).thenReturn(account1);
+	when(this.accountService.updateAccount(Mockito.any())).thenReturn(account);
+	this.mockMvc
+		.perform(put("/api/v1/account/MR9454318045").contentType(MediaType.APPLICATION_JSON)
+			.content(accountObject))
+		.andExpect(status().isOk()).andExpect(result -> assertThat(result instanceof ConflictException));
+    }
+
+    @Test
+    public void updateAccountTest_02() throws Exception {
 	String accountObject = new ObjectMapper().writeValueAsString(account);
 	when(this.accountService.updateAccount(account)).thenReturn(account);
 	this.mockMvc
@@ -89,9 +110,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    public void updateAccount_Exception() throws Exception {
-	Account account = new Account("6188d254ee97ed79200f1e37", "John", "Doe", "M", "dharmendra@gmail.com",
-		"9454318045", "MR9454318045");
+    public void updateAccount_Exception_01() throws Exception {
 	String accountObject = new ObjectMapper().writeValueAsString(account);
 	when(this.accountService.getAccount(Mockito.anyString())).thenReturn(account);
 	when(this.accountService.updateAccount(Mockito.any())).thenReturn(account);
@@ -103,8 +122,6 @@ public class AccountControllerTest {
 
     @Test
     public void deleteAccountTest() throws Exception {
-	Account account = new Account("6188d254ee97ed79200f1e37", "John", "Doe", "M", "dharmendra@gmail.com",
-		"9454318045", "MR9454318045");
 	when(this.accountService.getAccount(Mockito.anyString())).thenReturn(account);
 	Mockito.doNothing().when(this.accountService).deleteAccount(Mockito.anyString());
 	this.mockMvc.perform(delete("/api/v1/account/MR9454318045").contentType(MediaType.APPLICATION_JSON))
