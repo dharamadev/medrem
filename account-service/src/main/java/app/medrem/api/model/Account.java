@@ -16,24 +16,24 @@ import lombok.Data;
 @Document(collection = "account")
 public class Account {
 
-    @Id
-    private String id;
+	@Id
+	private String id;
 
-    @Length(min = 1, message = "not valid")
-    private String firstName;
+	@Length(min = 1, message = "not valid")
+	private String firstName;
 
-    private String lastName;
+	private String lastName;
 
-    @Length(min = 1, message = "not valid")
-    private String gender;
+	@Length(min = 1, message = "not valid")
+	private String gender;
 
-    @Email(message = "not valid")
-    private String email;
+	@Email(message = "not valid")
+	private String email;
 
-    @Indexed(unique = true)
-    @Pattern(regexp = "(^$|[0-9]{10,10})", message = "not valid")
-    private String contactNumber;
+	@Indexed(unique = true)
+	@Pattern(regexp = "(^$|[0-9]{10,10})", message = "not valid")
+	private String contactNumber;
 
-    @Indexed(unique = true)
-    private String accountNumber;
+	@Indexed(unique = true)
+	private String accountNumber;
 }

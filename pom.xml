@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.4</version>
+		<version>2.6.2</version>
 		<relativePath />
 	</parent>
 
@@ -17,14 +17,15 @@
 	<name>medrem</name>
 
 	<properties>
-		<java.version>11</java.version>
-		<spring-cloud.version>2020.0.3</spring-cloud.version>
+		<java.version>17</java.version>
+		<spring-cloud.version>2021.0.0</spring-cloud.version>
 	</properties>
 
 	<modules>
 		<module>config-server</module>
 		<module>account-service</module>
 		<module>reminder-service</module>
+		<module>service-registry</module>
 	</modules>
 
 	<dependencyManagement>
