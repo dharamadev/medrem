@@ -9,27 +9,27 @@ import app.medrem.api.repository.AccountRepository;
 @Service
 public class AccountServiceImpl implements AccountService {
 
-    @Autowired
-    private AccountRepository accountRepository;
+	@Autowired
+	private AccountRepository accountRepository;
 
-    @Override
-    public Account getAccount(String accountNumber) {
-	return this.accountRepository.findByAccountNumber(accountNumber);
-    }
+	@Override
+	public Account getAccount(String accountNumber) {
+		return this.accountRepository.findByAccountNumber(accountNumber);
+	}
 
-    @Override
-    public Account createAccount(Account account) {
-	account.setAccountNumber("MR" + account.getContactNumber());
-	return this.accountRepository.save(account);
-    }
+	@Override
+	public Account createAccount(Account account) {
+		account.setAccountNumber("MR" + account.getContactNumber());
+		return this.accountRepository.save(account);
+	}
 
-    @Override
-    public Account updateAccount(Account account) {
-	return this.accountRepository.save(account);
-    }
+	@Override
+	public Account updateAccount(Account account) {
+		return this.accountRepository.save(account);
+	}
 
-    @Override
-    public void deleteAccount(String accountNumber) {
-	this.accountRepository.deleteByAccountNumber(accountNumber);
-    }
+	@Override
+	public void deleteAccount(String accountNumber) {
+		this.accountRepository.deleteByAccountNumber(accountNumber);
+	}
 }

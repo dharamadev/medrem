@@ -9,8 +9,8 @@ import lombok.Data;
 @Builder
 public class Errordto {
 
-    private String uri;
-    private int status;
-    private String message;
-    private LocalDateTime time;
+	private String uri;
+	private int status;
+	private String message;
+	private LocalDateTime time;
 }

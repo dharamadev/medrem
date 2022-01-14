@@ -8,3 +8,10 @@ spring:
       fail-fast: true
 #      password: ${CONFIG_SERVICE_PASSWORD}
 #      username: user
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8889/eureka}
+  instance:
+    preferIpAddress: true

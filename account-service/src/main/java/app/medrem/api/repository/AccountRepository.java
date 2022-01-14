@@ -10,7 +10,7 @@ import app.medrem.api.model.Account;
 public interface AccountRepository extends MongoRepository<Account, String> {
 
 	public Account findByAccountNumber(String accountNumber);
-	
+
 	@DeleteQuery
 	public Account deleteByAccountNumber(String accountNumber);
 }

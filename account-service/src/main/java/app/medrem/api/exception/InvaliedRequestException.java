@@ -1,6 +1,6 @@
 package app.medrem.api.exception;
 
-public class InvaliedRequestException extends RuntimeException{
+public class InvaliedRequestException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
